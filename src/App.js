@@ -3,6 +3,7 @@ import React from "react";
 import Header from "./Components/Layout/Header";
 import Meals from "./Components/Meals/Meals";
 import Cart from "./Components/Cart/Cart";
+import CartProvider from "./store/CartProvider";
 
 function App() {
   // Managing Cart & Modal State when pop up visible or not
@@ -16,13 +17,14 @@ function App() {
   };
 
   return (
-    <React.Fragment>
+    // Replacing the React.Fragment with the context:
+    <CartProvider>
       {cartIsShown && <Cart onClose={hideCartHandler} />}
       <Header onShowCart={showCartHandler} />
       <main>
         <Meals />
       </main>
-    </React.Fragment>
+    </CartProvider>
   );
 }
 
